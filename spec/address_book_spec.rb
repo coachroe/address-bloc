@@ -18,6 +18,14 @@ require_relative '../models/address_book'
        check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
       end
 
+      it "responds to other entries" do
+        expect(book).to respond_to(:entries)
+        book.import_from_csv("entries_2.csv")
+       # Check the first entry
+       entry_one = book.entries[0]
+       check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
+      end
+
       it "initializes entries as an array" do
         expect(book.entries).to be_an(Array)
       end
